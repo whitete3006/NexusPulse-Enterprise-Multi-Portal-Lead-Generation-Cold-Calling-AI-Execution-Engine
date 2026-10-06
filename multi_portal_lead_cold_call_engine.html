@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusPulse Enterprise | All-in-One Growth & Cold Call Engine (Live)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f0fdf4', 100: '#dcfce7', 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 700: '#15803d' },
+                        'cyan-neon': '#06b6d4',
+                        darkbg: { 950: '#070a11', 900: '#0d1322', 800: '#141d33', 700: '#1f2d4d', 600: '#2d3f66' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0d1322; }
+        ::-webkit-scrollbar-thumb { background: #2d3f66; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b5285; }
+        .glow-cyan { box-shadow: 0 0 15px rgba(6, 182, 212, 0.25); }
+        .glow-emerald { box-shadow: 0 0 15px rgba(34, 197, 94, 0.25); }
+    </style>
+</head>
+<body class="bg-darkbg-950 text-slate-100 font-sans antialiased min-h-screen flex selection:bg-cyan-500 selection:text-black">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 bg-darkbg-900 border-r border-slate-800 flex flex-col justify-between shrink-0 fixed inset-y-0 z-50 overflow-y-auto">
+        <div>
+            <div class="p-4 border-b border-slate-800/80 flex items-center space-x-3">
+                <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center font-bold text-xl text-slate-950 shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-base tracking-tight text-white flex items-center gap-1.5">NexusPulse</h1>
+                    <p class="text-[10px] text-cyan-400 font-mono font-medium uppercase tracking-wider">Enterprise OS v5.2 (CRUD)</p>
+                </div>
+            </div>
+
+            <nav class="p-3 space-y-1 text-xs font-medium">
+                <div class="px-3 py-1.5 text-[10px] uppercase font-mono font-bold text-slate-500 tracking-wider">Command & Sourcing</div>
+                <button onclick="switchPortal('command')" id="nav-command" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left active bg-darkbg-800 text-white"><i class="fa-solid fa-chart-line text-cyan-400 w-4 text-center"></i><span>1. Executive Command</span></button>
+                <button onclick="switchPortal('sourcing')" id="nav-sourcing" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-cloud-arrow-down text-emerald-400 w-4 text-center"></i><span>2. Sourcing & Leads (CRUD)</span></button>
+                <button onclick="switchPortal('waterfall')" id="nav-waterfall" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-filter-circle-dollar text-purple-400 w-4 text-center"></i><span>3. Waterfall Enrichment</span></button>
+
+                <div class="px-3 py-1.5 text-[10px] uppercase font-mono font-bold text-slate-500 tracking-wider mt-3">Expansion Modules</div>
+                <button onclick="switchPortal('whatsapp')" id="nav-whatsapp" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-brands fa-whatsapp text-emerald-400 w-4 text-center"></i><span>4. WhatsApp API & Chatbot</span></button>
+                <button onclick="switchPortal('intent')" id="nav-intent" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-radar text-cyan-400 w-4 text-center"></i><span>5. Competitor Intent Radar</span></button>
+                <button onclick="switchPortal('smtp-warmup')" id="nav-smtp-warmup" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-network-wired text-amber-400 w-4 text-center"></i><span>6. Email Warmup Pool</span></button>
+                <button onclick="switchPortal('noshow')" id="nav-noshow" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-user-clock text-rose-400 w-4 text-center"></i><span>7. No-Show Recovery Engine</span></button>
+                <button onclick="switchPortal('attribution')" id="nav-attribution" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-chart-pie text-purple-400 w-4 text-center"></i><span>8. Revenue Attribution</span></button>
+
+                <div class="px-3 py-1.5 text-[10px] uppercase font-mono font-bold text-slate-500 tracking-wider mt-3">Outreach & Execution</div>
+                <button onclick="switchPortal('orchestrator')" id="nav-orchestrator" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-diagram-project text-sky-400 w-4 text-center"></i><span>9. Cadence Orchestrator</span></button>
+                <button onclick="switchPortal('dialer')" id="nav-dialer" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-phone-volume text-emerald-400 w-4 text-center"></i><span>10. Parallel Dialer Studio</span></button>
+                <button onclick="switchPortal('ai-agent')" id="nav-ai-agent" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-robot text-purple-400 w-4 text-center"></i><span>11. AI Voice Ops Room</span></button>
+                <button onclick="switchPortal('crm')" id="nav-crm" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-kanban text-amber-400 w-4 text-center"></i><span>12. Sales CRM Pipeline</span></button>
+                <button onclick="switchPortal('code')" id="nav-code" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-darkbg-800 transition-all text-left"><i class="fa-solid fa-code text-cyan-400 w-4 text-center"></i><span>13. Code Blueprint & API</span></button>
+            </nav>
+        </div>
+
+        <div class="p-3 border-t border-slate-800/80 bg-darkbg-950/50 text-[11px] font-mono space-y-1.5">
+            <div class="flex items-center justify-between text-slate-400"><span>WhatsApp API:</span><span class="text-emerald-400 font-bold">Connected</span></div>
+            <div class="flex items-center justify-between text-slate-400"><span>SMTP Rotator:</span><span class="text-cyan-400 font-bold">50 Inboxes</span></div>
+            <div class="pt-2 text-[10px] text-slate-500 text-center border-t border-slate-800/50">NexusPulse Enterprise Edition</div>
+        </div>
+    </aside>
+
+    <!-- Main Content wrapper -->
+    <div class="flex-1 pl-64 flex flex-col min-h-screen">
+        <header class="h-16 border-b border-slate-800 bg-darkbg-900/80 backdrop-blur sticky top-0 z-40 px-6 flex items-center justify-between">
+            <div class="text-xs font-mono text-slate-400 flex items-center gap-2">
+                <span class="text-slate-500">Workspace:</span>
+                <span class="text-white font-bold bg-darkbg-800 px-2.5 py-1 rounded border border-slate-700">Enterprise Growth Scale Account #092</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="relative w-64">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-slate-500"></i>
+                    <input type="text" id="global-search" oninput="filterLeads(this.value)" placeholder="Search contacts, signals, deals..." class="w-full bg-darkbg-950 text-xs text-slate-200 pl-9 pr-3 py-2 rounded-lg border border-slate-700/80 focus:outline-none focus:border-cyan-500">
+                </div>
+                <button onclick="openLeadModal()" class="px-3 py-2 bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white font-bold text-xs rounded-lg shadow-md flex items-center gap-1.5">
+                    <i class="fa-solid fa-plus text-xs"></i> Add New Lead
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1 p-6 space-y-6">
+
+            <!-- 1. Executive Command -->
+            <section id="portal-command" class="portal-view space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight">Executive Command Center & Real-Time Performance</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-darkbg-900 border border-slate-800 p-4 rounded-xl shadow-lg">
+                        <p class="text-[10px] font-mono uppercase text-slate-400">Total Pipeline Revenue</p>
+                        <h3 class="text-2xl font-black text-white font-mono mt-1">$842,500</h3>
+                        <div class="mt-3 text-xs text-emerald-400"><i class="fa-solid fa-arrow-trend-up"></i> +18.4% this month</div>
+                    </div>
+                    <div class="bg-darkbg-900 border border-slate-800 p-4 rounded-xl shadow-lg">
+                        <p class="text-[10px] font-mono uppercase text-slate-400">WhatsApp Connect Ratio</p>
+                        <h3 class="text-2xl font-black text-emerald-400 font-mono mt-1">82.1%</h3>
+                        <div class="mt-3 text-xs text-emerald-400"><i class="fa-solid fa-check"></i> High Engagement</div>
+                    </div>
+                    <div class="bg-darkbg-900 border border-slate-800 p-4 rounded-xl shadow-lg">
+                        <p class="text-[10px] font-mono uppercase text-slate-400">Intent Radar Alerts</p>
+                        <h3 class="text-2xl font-black text-cyan-400 font-mono mt-1">14 Active</h3>
+                        <div class="mt-3 text-xs text-cyan-400"><i class="fa-solid fa-radar"></i> G2 Competitor Tracking</div>
+                    </div>
+                    <div class="bg-darkbg-900 border border-slate-800 p-4 rounded-xl shadow-lg">
+                        <p class="text-[10px] font-mono uppercase text-slate-400">SMTP Inbox Health</p>
+                        <h3 class="text-2xl font-black text-purple-400 font-mono mt-1">99.4% Safe</h3>
+                        <div class="mt-3 text-xs text-purple-400"><i class="fa-solid fa-shield"></i> 50 Warm Inboxes</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Sourcing & Scraping Hub (CRUD Enabled) -->
+            <section id="portal-sourcing" class="portal-view hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Sourcing & Multi-Portal Lead Management (CRUD)</h2>
+                        <p class="text-xs text-slate-400">Add, edit, update status, or delete prospect targets directly in local storage database.</p>
+                    </div>
+                    <button onclick="openLeadModal()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold rounded-lg shadow transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Put / Add Lead
+                    </button>
+                </div>
+                
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+                    <div class="p-4 border-b border-slate-800 flex justify-between items-center font-bold text-xs text-slate-300 uppercase font-mono">
+                        <span>Live Scraped & Managed Prospect Database</span>
+                        <span id="lead-count-badge" class="text-cyan-400 text-[11px]">0 records</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-darkbg-950 text-slate-400 font-mono border-b border-slate-800">
+                                <tr>
+                                    <th class="p-3">Company</th>
+                                    <th class="p-3">Contact Name</th>
+                                    <th class="p-3">Email</th>
+                                    <th class="p-3">Phone</th>
+                                    <th class="p-3">Source / Portal</th>
+                                    <th class="p-3">Status</th>
+                                    <th class="p-3 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sourcing-leads-table" class="divide-y divide-slate-800 text-slate-300">
+                                <!-- Dynamic rows inserted via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Waterfall -->
+            <section id="portal-waterfall" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight">Waterfall Enrichment & Verification Studio</h2>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg">
+                    <p class="text-xs text-slate-400">Clay -> Apollo -> BetterContact -> Twilio -> Reoon verification pipeline active.</p>
+                </div>
+            </section>
+
+            <!-- 4. WhatsApp Expansion Module -->
+            <section id="portal-whatsapp" class="portal-view hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400"></i> WhatsApp Business API & Chatbot Companion
+                        </h2>
+                        <p class="text-xs text-slate-400">Dispatch instant broadcasts and manage automated conversational engagement workflows.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg space-y-4">
+                        <h3 class="text-sm font-semibold text-white">Broadcast Template Sender</h3>
+                        <div>
+                            <label class="text-xs text-slate-400 block mb-1">Target Segment</label>
+                            <select class="w-full bg-darkbg-950 border border-slate-800 text-xs text-slate-200 p-2 rounded-lg">
+                                <option>All Qualified Cold Leads</option>
+                                <option>High Intent Web Visitors</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-400 block mb-1">Message Body</label>
+                            <textarea id="wa-message-input" rows="4" class="w-full bg-darkbg-950 border border-slate-800 p-2.5 rounded-lg text-xs text-slate-200">Hi {{1}}, noticed you checked out our cold outreach breakdown yesterday. Would love to send over the direct mobile waterfall sample!</textarea>
+                        </div>
+                        <button onclick="alert('Broadcast Campaign Sent Successfully!')" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-lg shadow transition-all">
+                            <i class="fa-solid fa-paper-plane mr-1"></i> Send Broadcast Campaign
+                        </button>
+                    </div>
+                    <div class="lg:col-span-2 bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-sm font-semibold text-white mb-4">Live Conversational Chatbot Stream</h3>
+                            <div class="space-y-3 bg-darkbg-950 p-4 rounded-xl border border-slate-800 max-h-64 overflow-y-auto text-xs font-mono">
+                                <div class="flex gap-2"><span class="text-emerald-400 font-bold">Marcus Vance (+14158920192):</span><span class="text-slate-200">"Hey, send over that demo link!"</span></div>
+                                <div class="flex gap-2"><span class="text-cyan-400 font-bold">NexusPulse Bot:</span><span class="text-slate-300">"Here is your direct booking link: https://cal.com/nexuspulse/demo"</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Competitor Intent Radar -->
+            <section id="portal-intent" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                    <i class="fa-solid fa-radar text-cyan-400"></i> Competitor Intelligence & Intent Radar
+                </h2>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-4 shadow-lg flex justify-between items-center">
+                    <div class="space-y-1">
+                        <span class="text-xs font-mono text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">G2 Intent Signal</span>
+                        <h4 class="font-bold text-white text-sm">CloudScale Technologies <span class="text-xs text-slate-400 font-normal">(Viewed ZoomInfo vs NexusPulse comparison)</span></h4>
+                        <p class="text-[10px] text-slate-500">Detected 14 mins ago via RB2B & G2 Buyer Graph</p>
+                    </div>
+                    <button onclick="alert('AI Voice Agent dispatched!')" class="px-3 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-lg">
+                        <i class="fa-solid fa-robot mr-1"></i> Trigger Instant AI Call
+                    </button>
+                </div>
+            </section>
+
+            <!-- 6. Email Warmup Pool -->
+            <section id="portal-smtp-warmup" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                    <i class="fa-solid fa-network-wired text-amber-400"></i> Email Warmup Network & Custom SMTP Rotator
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-4 shadow-lg space-y-3">
+                        <div class="flex justify-between items-center"><span class="font-bold text-white text-sm">getnexuspulse.com</span><span class="text-[10px] font-mono bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded">Active Pool #1</span></div>
+                        <div class="text-xs text-slate-400 space-y-1">
+                            <div class="flex justify-between"><span>Reputation:</span><span class="text-emerald-400 font-bold">99/100</span></div>
+                            <div class="flex justify-between"><span>Daily Limit:</span><span class="text-slate-200">150 / 150</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. No-Show Recovery Engine -->
+            <section id="portal-noshow" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                    <i class="fa-solid fa-user-clock text-rose-400"></i> Meeting No-Show & Re-Engagement Automations
+                </h2>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg space-y-3">
+                    <div class="p-3 bg-darkbg-950 border border-rose-500/30 rounded-lg flex justify-between items-center text-xs">
+                        <div><span class="font-bold text-white">Apex Digital Inc (Sarah Jenkins)</span> - <span class="text-rose-400">Missed Demo at 10:00 AM</span></div>
+                        <button onclick="alert('Recovery sequence triggered!')" class="px-3 py-1.5 bg-rose-600 text-white font-bold rounded">Trigger Recovery SMS + Voice</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. Revenue Attribution -->
+            <section id="portal-attribution" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                    <i class="fa-solid fa-chart-pie text-purple-400"></i> Advanced Revenue Attribution & Deal Slicer
+                </h2>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 bg-darkbg-950 rounded-lg border border-slate-800 space-y-2">
+                        <span class="text-emerald-400 font-mono font-bold">Top Revenue Channel</span>
+                        <h4 class="text-base font-bold text-white">Apollo + BetterContact Mobile Dialer</h4>
+                        <p class="text-slate-400">$482,000 Closed-Won (57%)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Orchestrator -->
+            <section id="portal-orchestrator" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight">Multi-Channel Cadence & Orchestration Engine</h2>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg"><p class="text-xs text-slate-400">Multi-channel touchpoints configured.</p></div>
+            </section>
+
+            <!-- 10. Dialer -->
+            <section id="portal-dialer" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight">Parallel Cold Call Dialer Studio</h2>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg"><p class="text-xs text-slate-400">WebRTC high-velocity parallel softphone console active.</p></div>
+            </section>
+
+            <!-- 11. AI Agent -->
+            <section id="portal-ai-agent" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight">AI Voice Agent Operations Room</h2>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg"><p class="text-xs text-slate-400">Manage Vapi autonomous calling agents.</p></div>
+            </section>
+
+            <!-- 12. CRM Pipeline -->
+            <section id="portal-crm" class="portal-view hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white tracking-tight">Sales CRM & Live Prospect Pipeline</h2>
+                        <p class="text-xs text-slate-400">Synchronized records connected to local storage database.</p>
+                    </div>
+                    <button onclick="renderLeads()" class="px-3 py-1.5 bg-darkbg-800 hover:bg-darkbg-700 text-cyan-400 text-xs font-mono rounded border border-slate-700">
+                        <i class="fa-solid fa-rotate mr-1"></i> Refresh CRM
+                    </button>
+                </div>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-darkbg-950 text-slate-400 font-mono border-b border-slate-800">
+                                <tr>
+                                    <th class="p-3">Company</th>
+                                    <th class="p-3">Contact</th>
+                                    <th class="p-3">Email</th>
+                                    <th class="p-3">Phone</th>
+                                    <th class="p-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="crm-leads-table" class="divide-y divide-slate-800 text-slate-300">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 13. Code -->
+            <section id="portal-code" class="portal-view hidden space-y-6">
+                <h2 class="text-xl font-bold text-white tracking-tight">Backend API & Database Code Blueprint</h2>
+                <div class="bg-darkbg-900 border border-slate-800 rounded-xl p-5 shadow-lg">
+                    <p class="text-xs text-slate-400">Production-ready client-side CRUD state management engine deployed.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Add / Edit Lead Modal -->
+    <div id="lead-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-darkbg-900 border border-slate-800 rounded-xl w-full max-w-lg overflow-hidden shadow-2xl">
+            <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-darkbg-950">
+                <h3 id="modal-title" class="font-bold text-sm text-white font-mono">Add New Lead</h3>
+                <button onclick="closeLeadModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="lead-form" onsubmit="handleFormSubmit(event)" class="p-5 space-y-4 text-xs">
+                <input type="hidden" id="lead-id">
+                <div>
+                    <label class="block text-slate-400 mb-1">Company Name *</label>
+                    <input type="text" id="lead-company" required class="w-full bg-darkbg-950 border border-slate-800 p-2.5 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-500">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-slate-400 mb-1">Contact Name *</label>
+                        <input type="text" id="lead-name" required class="w-full bg-darkbg-950 border border-slate-800 p-2.5 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-500">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Email *</label>
+                        <input type="email" id="lead-email" required class="w-full bg-darkbg-950 border border-slate-800 p-2.5 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-slate-400 mb-1">Phone</label>
+                        <input type="text" id="lead-phone" class="w-full bg-darkbg-950 border border-slate-800 p-2.5 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-500">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Source Portal</label>
+                        <select id="lead-source" class="w-full bg-darkbg-950 border border-slate-800 p-2.5 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-500">
+                            <option value="Apollo.io">Apollo.io</option>
+                            <option value="LinkedIn Scraper">LinkedIn Scraper</option>
+                            <option value="Google Maps">Google Maps</option>
+                            <option value="Direct Ingest">Direct Ingest</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-slate-400 mb-1">Pipeline Status</label>
+                    <select id="lead-status" class="w-full bg-darkbg-950 border border-slate-800 p-2.5 rounded-lg text-slate-200 focus:outline-none focus:border-cyan-500">
+                        <option value="New Lead">New Lead</option>
+                        <option value="Enriched">Enriched</option>
+                        <option value="Contacted">Contacted</option>
+                        <option value="Demo Booked">Demo Booked</option>
+                        <option value="Closed-Won">Closed-Won</option>
+                    </select>
+                </div>
+                <div class="pt-3 flex justify-end gap-2">
+                    <button type="button" onclick="closeLeadModal()" class="px-4 py-2 bg-darkbg-800 hover:bg-darkbg-700 text-slate-300 rounded-lg">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white font-bold rounded-lg shadow">Save Record</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Application Controller Script -->
+    <script>
+        const defaultLeads = [
+            { id: '1', company: 'Acme Corp', name: 'Sarah Jenkins', email: 's.jenkins@acmecorp.io', phone: '+1 (415) 892-0192', source: 'Apollo.io', status: 'Demo Booked' },
+            { id: '2', company: 'Nexus Innovations', name: 'David Miller', email: 'david@nexusinno.com', phone: '+1 (212) 555-0198', source: 'LinkedIn Scraper', status: 'Contacted' },
+            { id: '3', company: 'Global Logistics Group', name: 'Elena Rostova', email: 'elena@globallogistics.org', phone: '+44 20 7946 0912', source: 'Google Maps', status: 'New Lead' }
+        ];
+
+        function getStoredLeads() {
+            const data = localStorage.getItem('nexuspulse_leads');
+            if (!data) {
+                localStorage.setItem('nexuspulse_leads', JSON.stringify(defaultLeads));
+                return defaultLeads;
+            }
+            return JSON.parse(data);
+        }
+
+        function saveStoredLeads(leads) {
+            localStorage.setItem('nexuspulse_leads', JSON.stringify(leads));
+            renderLeads();
+        }
+
+        function switchPortal(portalId) {
+            document.querySelectorAll('.portal-view').forEach(view => view.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active', 'bg-darkbg-800', 'text-white'));
+
+            const targetView = document.getElementById(`portal-${portalId}`);
+            if (targetView) targetView.classList.remove('hidden');
+
+            const targetNav = document.getElementById(`nav-${portalId}`);
+            if (targetNav) targetNav.classList.add('active', 'bg-darkbg-800', 'text-white');
+        }
+
+        function renderLeads(filterQuery = '') {
+            const leads = getStoredLeads();
+            const sourcingTable = document.getElementById('sourcing-leads-table');
+            const crmTable = document.getElementById('crm-leads-table');
+            const countBadge = document.getElementById('lead-count-badge');
+
+            if (countBadge) countBadge.textContent = `${leads.length} records`;
+
+            const filtered = leads.filter(lead => 
+                lead.company.toLowerCase().includes(filterQuery.toLowerCase()) ||
+                lead.name.toLowerCase().includes(filterQuery.toLowerCase()) ||
+                lead.email.toLowerCase().includes(filterQuery.toLowerCase()) ||
+                lead.status.toLowerCase().includes(filterQuery.toLowerCase())
+            );
+
+            if (sourcingTable) {
+                sourcingTable.innerHTML = filtered.length === 0 ? 
+                    `<tr><td colspan="7" class="p-4 text-center text-slate-500 font-mono">No matching records found.</td></tr>` :
+                    filtered.map(lead => `
+                        <tr class="hover:bg-darkbg-800/50 transition-colors">
+                            <td class="p-3 font-medium text-white">${lead.company}</td>
+                            <td class="p-3">${lead.name}</td>
+                            <td class="p-3 text-cyan-400 font-mono">${lead.email}</td>
+                            <td class="p-3 font-mono">${lead.phone || 'N/A'}</td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-mono bg-darkbg-950 text-slate-300 border border-slate-700">${lead.source}</span></td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-mono ${getStatusBadgeClass(lead.status)}">${lead.status}</span></td>
+                            <td class="p-3 text-right space-x-2">
+                                <button onclick="editLead('${lead.id}')" class="text-slate-400 hover:text-cyan-400"><i class="fa-solid fa-pen"></i></button>
+                                <button onclick="deleteLead('${lead.id}')" class="text-slate-400 hover:text-rose-400"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `).join('');
+            }
+
+            if (crmTable) {
+                crmTable.innerHTML = filtered.length === 0 ? 
+                    `<tr><td colspan="5" class="p-4 text-center text-slate-500 font-mono">No matching pipeline deals found.</td></tr>` :
+                    filtered.map(lead => `
+                        <tr class="hover:bg-darkbg-800/50 transition-colors">
+                            <td class="p-3 font-medium text-white">${lead.company}</td>
+                            <td class="p-3">${lead.name}</td>
+                            <td class="p-3 text-cyan-400 font-mono">${lead.email}</td>
+                            <td class="p-3 font-mono">${lead.phone || 'N/A'}</td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] font-mono ${getStatusBadgeClass(lead.status)}">${lead.status}</span></td>
+                        </tr>
+                    `).join('');
+            }
+        }
+
+        function getStatusBadgeClass(status) {
+            switch(status) {
+                case 'Closed-Won': return 'bg-emerald-950 text-emerald-400 border border-emerald-800';
+                case 'Demo Booked': return 'bg-purple-950 text-purple-400 border border-purple-800';
+                case 'Contacted': return 'bg-cyan-950 text-cyan-400 border border-cyan-800';
+                case 'Enriched': return 'bg-amber-950 text-amber-400 border border-amber-800';
+                default: return 'bg-darkbg-950 text-slate-400 border border-slate-700';
+            }
+        }
+
+        function filterLeads(query) {
+            renderLeads(query);
+        }
+
+        function openLeadModal(lead = null) {
+            const modal = document.getElementById('lead-modal');
+            const title = document.getElementById('modal-title');
+            document.getElementById('lead-form').reset();
+            document.getElementById('lead-id').value = '';
+
+            if (lead) {
+                title.textContent = 'Edit Lead Record';
+                document.getElementById('lead-id').value = lead.id;
+                document.getElementById('lead-company').value = lead.company;
+                document.getElementById('lead-name').value = lead.name;
+                document.getElementById('lead-email').value = lead.email;
+                document.getElementById('lead-phone').value = lead.phone;
+                document.getElementById('lead-source').value = lead.source;
+                document.getElementById('lead-status').value = lead.status;
+            } else {
+                title.textContent = 'Add New Lead';
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeLeadModal() {
+            document.getElementById('lead-modal').classList.add('hidden');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const id = document.getElementById('lead-id').value;
+            const company = document.getElementById('lead-company').value;
+            const name = document.getElementById('lead-name').value;
+            const email = document.getElementById('lead-email').value;
+            const phone = document.getElementById('lead-phone').value;
+            const source = document.getElementById('lead-source').value;
+            const status = document.getElementById('lead-status').value;
+
+            let leads = getStoredLeads();
+
+            if (id) {
+                leads = leads.map(l => l.id === id ? { id, company, name, email, phone, source, status } : l);
+            } else {
+                const newLead = { id: Date.now().toString(), company, name, email, phone, source, status };
+                leads.unshift(newLead);
+            }
+
+            saveStoredLeads(leads);
+            closeLeadModal();
+        }
+
+        function editLead(id) {
+            const leads = getStoredLeads();
+            const lead = leads.find(l => l.id === id);
+            if (lead) openLeadModal(lead);
+        }
+
+        function deleteLead(id) {
+            if (confirm('Are you sure you want to delete this lead record?')) {
+                let leads = getStoredLeads();
+                leads = leads.filter(l => l.id !== id);
+                saveStoredLeads(leads);
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLeads();
+        });
+    </script>
+</body>
+</html>
